@@ -1,7 +1,5 @@
 const initStore = () => {
-  const getItems = () => [
-    { testProp: 'testValue' },
-  ];
+  const getItems = () => require('../products.json');
 
   return { getItems };
 };

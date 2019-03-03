@@ -26,30 +26,10 @@ const styles = () => ({
   },
 });
 
-const baseProducts = [
-  { type: 'vegetables', name: 'carrot' },
-  { type: 'vegetables', name: 'cabbage' },
-  { type: 'vegetables', name: 'parsnip' },
-  { type: 'dairy', name: 'eggs' },
-  { type: 'dairy', name: 'milk' },
-  { type: 'dairy', name: 'yoghurt' },
-  { type: 'dairy', name: 'cheese' },
-  { type: 'meat', name: 'chicken' },
-  { type: 'meat', name: 'ostrich' },
-  { type: 'meat', name: 'beef' },
-  { type: 'meat', name: 'donkey' },
-  { type: 'meat', name: 'west african hyena' },
-];
 
-const groupedProducts = baseProducts.reduce((acc, { type, ...item }) => ({
-  ...acc,
-  [type]: (acc[type] || []).concat(item),
-}), {});
-
-const allProductTypes = Object.keys(groupedProducts);
-
-const ProductFilter = ({ classes }) => {
+const ProductFilter = ({ classes, groupedProducts }) => {
   const [ selectedProductType, setSelectedProductType ] = useState('');
+  const allProductTypes = Object.keys(groupedProducts);
 
   return (
     <div className={classes.container}>
@@ -57,9 +37,19 @@ const ProductFilter = ({ classes }) => {
       <Paper className={`${classes.filterer} t-filterer`}>
         <FormControl className={classes.formControl}>
           <InputLabel>Product Type</InputLabel>
-          <Select value={selectedProductType} onChange={e => setSelectedProductType(e.target.value)} >
+          <Select
+            value={selectedProductType}
+            onChange={e => setSelectedProductType(e.target.value)}
+            className="t-productTypeDropdown"
+          >
             {allProductTypes.map(productType => (
-              <MenuItem value={productType} key={productType}>{capitalize(productType)}</MenuItem>
+              <MenuItem
+                key={productType}
+                className={`t-${productType}Option`}
+                value={productType}
+              >
+                {capitalize(productType)}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>

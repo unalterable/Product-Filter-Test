@@ -1,0 +1,14 @@
+[
+  { "type": "vegetables", "name": "carrot" },
+  { "type": "vegetables", "name": "cabbage" },
+  { "type": "vegetables", "name": "parsnip" },
+  { "type": "dairy", "name": "eggs" },
+  { "type": "dairy", "name": "milk" },
+  { "type": "dairy", "name": "yoghurt" },
+  { "type": "dairy", "name": "cheese" },
+  { "type": "meat", "name": "chicken" },
+  { "type": "meat", "name": "ostrich" },
+  { "type": "meat", "name": "beef" },
+  { "type": "meat", "name": "donkey" },
+  { "type": "meat", "name": "west african hyena" }
+]
