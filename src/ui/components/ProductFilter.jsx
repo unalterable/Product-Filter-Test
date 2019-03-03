@@ -54,7 +54,7 @@ const ProductFilter = ({ classes }) => {
   return (
     <div className={classes.container}>
 
-      <Paper className={classes.filterer}>
+      <Paper className={`${classes.filterer} t-filterer`}>
         <FormControl className={classes.formControl}>
           <InputLabel>Product Type</InputLabel>
           <Select value={selectedProductType} onChange={e => setSelectedProductType(e.target.value)} >
@@ -65,7 +65,7 @@ const ProductFilter = ({ classes }) => {
         </FormControl>
       </Paper>
 
-      <Paper className={classes.itemsList}>
+      <Paper className={`${classes.itemsList} t-itemsList`}>
         { (selectedProductType ? [selectedProductType] : allProductTypes)
           .reduce((acc, productType) => ([...acc, ...groupedProducts[productType]]), [])
           .map(({ name }) => (

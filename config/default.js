@@ -1,3 +1,3 @@
 module.exports = {
-  title: 'Base App',
+  title: 'Product Filter Test',
 };
