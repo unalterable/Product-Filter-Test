@@ -1,6 +1,5 @@
-# Base Node/Webpack/React/Express Application
+# Product Filter Test
 
-This is a base template for a simple service using Node/Webpack/React/Express. Designed to be extremely simple.
 
 ## Installation
 
