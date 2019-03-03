@@ -1,5 +1,5 @@
 import React, { useState }from 'react';
-
+import capitalize from 'lodash/capitalize';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -26,9 +26,30 @@ const styles = () => ({
   },
 });
 
-const ProductFilter = ({ classes }) => {
-  const [ productType, setProductType ] = useState('');
+const baseProducts = [
+  { type: 'vegetables', name: 'carrot' },
+  { type: 'vegetables', name: 'cabbage' },
+  { type: 'vegetables', name: 'parsnip' },
+  { type: 'dairy', name: 'eggs' },
+  { type: 'dairy', name: 'milk' },
+  { type: 'dairy', name: 'yoghurt' },
+  { type: 'dairy', name: 'cheese' },
+  { type: 'meat', name: 'chicken' },
+  { type: 'meat', name: 'ostrich' },
+  { type: 'meat', name: 'beef' },
+  { type: 'meat', name: 'donkey' },
+  { type: 'meat', name: 'west african hyena' },
+];
 
+const groupedProducts = baseProducts.reduce((acc, { type, ...item }) => ({
+  ...acc,
+  [type]: (acc[type] || []).concat(item),
+}), {});
+
+const allProductTypes = Object.keys(groupedProducts);
+
+const ProductFilter = ({ classes }) => {
+  const [ selectedProductType, setSelectedProductType ] = useState('');
 
   return (
     <div className={classes.container}>
@@ -36,16 +57,21 @@ const ProductFilter = ({ classes }) => {
       <Paper className={classes.filterer}>
         <FormControl className={classes.formControl}>
           <InputLabel>Product Type</InputLabel>
-          <Select value={productType} onChange={e => setProductType(e.target.value)} >
-            <MenuItem value={'vegetables'}>Vegetables</MenuItem>
-            <MenuItem value={'dairy'}>Dairy</MenuItem>
-            <MenuItem value={'meat'}>Meat</MenuItem>
+          <Select value={selectedProductType} onChange={e => setSelectedProductType(e.target.value)} >
+            {allProductTypes.map(productType => (
+              <MenuItem value={productType} key={productType}>{capitalize(productType)}</MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Paper>
 
       <Paper className={classes.itemsList}>
-        List
+        { (selectedProductType ? [selectedProductType] : allProductTypes)
+          .reduce((acc, productType) => ([...acc, ...groupedProducts[productType]]), [])
+          .map(({ name }) => (
+            <div key={name}>{capitalize(name)}</div>
+          ))
+        }
       </Paper>
     </div>
   );
