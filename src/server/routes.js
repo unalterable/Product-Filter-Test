@@ -6,21 +6,16 @@ import initItemController from './controllers/item';
 
 const initRoutes = () => {
   const store = initStore();
-  store.getConnection();
-  const itemController = initItemController({ itemStore: store.collections.items });
+  const itemController = initItemController({ store });
   const app = express();
   app.use(bodyParser.json());
 
   app.use('/assets', express.static('assets'));
 
   app.get('/api/items', itemController.getItems);
-  app.put('/api/item/', itemController.createItem);
-  app.get('/api/item/:id', itemController.getItemById);
-  app.post('/api/item/:id', itemController.updateItemById);
-  app.delete('/api/item/:id', itemController.deleteItemById);
 
   app.get('/*', indexController.showIndex);
-  
+
   return app;
 };
 

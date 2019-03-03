@@ -21,7 +21,4 @@ module.exports = {
     );
     res.send(html({ title, body, initialState, css: sheetsRegistry.toString() }));
   },
-  async showData(req, res) {
-    res.json({ hello: 'world' });
-  },
 };

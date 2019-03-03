@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Link from 'react-router-dom/Link';
 
 /* import MenuIcon from '@material-ui/icons/Menu'; */
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     flexGrow: 1,
   },
@@ -26,10 +25,7 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          Base Application
-          <Link to="/">Home</Link>
-          <Link to="/about/">About</Link>
-          <Link to="/users/">Users</Link>
+          Product Filter Test
         </Toolbar>
       </AppBar>
     </div>
